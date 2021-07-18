@@ -1,6 +1,6 @@
 <?php
 
-namespace FNP\ElInstanceOf;
+namespace Fnp\ElHelper;
 
 class Iof
 {

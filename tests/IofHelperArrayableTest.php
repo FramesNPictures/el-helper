@@ -1,9 +1,9 @@
 <?php
 
-use FNP\ElInstanceOf\Iof;
+use Fnp\ElHelper\Iof;
 use PHPUnit\Framework\TestCase;
 
-class ArrayableTest extends TestCase
+class IofHelperArrayableTest extends TestCase
 {
     /**
      * @test

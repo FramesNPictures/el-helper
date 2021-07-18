@@ -1,14 +1,17 @@
 {
-    "name": "framesnpictures/el-instance-of",
+    "name": "framesnpictures/el-helper",
     "description": "Checks the capability of the given instance",
     "type": "library",
+    "require": {
+        "php": "~7.4 ~8.0"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "FNP\\ElInstanceOf\\": "src/"
+            "Fnp\\ElHelper\\": "src/"
         }
     },
     "authors": [
@@ -17,5 +20,7 @@
             "email": "chris@cynarski.net"
         }
     ],
-    "require": {}
+    "require": {
+        "illuminate/support": "^8.50"
+    }
 }
