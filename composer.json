@@ -1,0 +1,21 @@
+{
+    "name": "framesnpictures/el-instance-of",
+    "description": "Checks the capability of the given instance",
+    "type": "library",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Framesnpictures\\ElInstanceOf\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Chris Cynarski",
+            "email": "chris@cynarski.net"
+        }
+    ],
+    "require": {}
+}
