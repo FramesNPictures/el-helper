@@ -35,7 +35,15 @@ jobs:
 
       - run:
           name: "Run tests"
-          command: phpdbg -qrr vendor/bin/phpunit --coverage-html build/coverage-report
+          command: |
+            mkdir -p ~/phpunit
+            vendor/bin/phpunit --log-junit ~/phpunit/junit.xmlphpdbg --coverage-html build/coverage-report
+
+      - store_test_results:
+          path: ~/phpunit
+
+      - store_artifacts:
+          path: ~/phpunit
 
       - store_artifacts:
           path: build/coverage-report
