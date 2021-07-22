@@ -65,6 +65,27 @@ class IofHelperTest extends TestCase
     /**
      * @test
      */
+    public function it_should_not_be_stringable(): void
+    {
+        $i = null;
+        $this->assertFalse(Iof::jsonable($i));
+
+        $i = 'Stringable?';
+        $this->assertFalse(Iof::jsonable($i));
+
+        $i = ['test' => 'test'];
+        $this->assertFalse(Iof::jsonable($i));
+
+        $i = new stdClass();
+        $this->assertFalse(Iof::jsonable($i));
+
+        $i = new ArrayableTestDummy1();
+        $this->assertFalse(Iof::jsonable($i));
+    }
+
+    /**
+     * @test
+     */
     public function it_should_be_stringable(): void
     {
         $i = new StringableTestDummy0();
