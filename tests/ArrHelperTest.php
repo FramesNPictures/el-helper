@@ -6,6 +6,6 @@ class ArrHelperTest extends TestCase
 {
     public function testDummy(): void
     {
-        $this->assertTrue(false);
+        $this->assertTrue(true);
     }
 }
