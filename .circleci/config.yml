@@ -32,9 +32,12 @@ jobs:
       - run: composer install -n --prefer-dist
 
       - run:
+          name: "Run the Tests"
           command: |
             mkdir -p ~/phpunit
+            mkdir -p ~/coverage
             vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
+            phpdbg -qrr vendor/bin/phpunit --coverage-html ~/coverage
           when: always
 
       - store_test_results:
@@ -42,6 +45,9 @@ jobs:
 
       - store_artifacts:
           path: ~/phpunit
+
+      - store_artifacts:
+          path: ~/coverage
 
       - save_cache:
           key: composer-v1-{{ checksum "composer.lock" }}
