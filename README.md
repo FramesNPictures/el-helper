@@ -1,2 +1,3 @@
-# instance-capability
-Checks the capability of the instance.
+# el-helper
+
+Number of helpers to be used in other modules.
