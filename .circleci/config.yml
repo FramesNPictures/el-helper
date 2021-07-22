@@ -37,7 +37,7 @@ jobs:
           name: "Run tests"
           command: |
             mkdir -p ~/phpunit
-            vendor/bin/phpunit --log-junit ~/phpunit/junit.xmlphpdbg --coverage-html build/coverage-report
+            phpdbg vendor/bin/phpunit --log-junit ~/phpunit/junit.xml --coverage-html build/coverage-report
 
       - store_test_results:
           path: ~/phpunit
