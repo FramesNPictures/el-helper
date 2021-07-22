@@ -73,7 +73,7 @@ class Iof
      *
      * @return bool
      */
-    public static function eloquent($object)
+    public static function eloquentModel($object)
     {
         if (!is_object($object))
             return FALSE;

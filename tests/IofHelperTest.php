@@ -3,7 +3,7 @@
 use Fnp\ElHelper\Iof;
 use PHPUnit\Framework\TestCase;
 
-class IofHelperArrayableTest extends TestCase
+class IofHelperTest extends TestCase
 {
     /**
      * @test

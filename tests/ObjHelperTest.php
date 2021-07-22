@@ -127,4 +127,28 @@ class ObjHelperTest extends TestCase
     {
         $this->assertEquals($methodName, Obj::methodName($prefix, $name, $suffix));
     }
+
+    public function testKeyObject(): void
+    {
+        $o1 = new DummyObject;
+        $o2 = new DummyObject;
+
+        $this->assertEquals(
+            Obj::key($o1),
+            Obj::key($o2)
+        );
+
+        $o2->b = 'This in not b';
+
+        $this->assertNotEquals(
+            Obj::key($o1),
+            Obj::key($o2)
+        );
+    }
+}
+
+class DummyObject
+{
+    public $a = 'This is A';
+    public $b = 'This is B';
 }

@@ -52,8 +52,52 @@ class Obj
             $elSuffix = ucFirst($suffix);
         }
 
-        $method = $elPrefix . $elName . $elSuffix;
+        $method = $elPrefix.$elName.$elSuffix;
 
         return $method;
+    }
+
+    public static function key(...$dependencies)
+    {
+        $key = [];
+
+        foreach ($dependencies as $dependency) {
+
+            if (is_string($dependency)) {
+                $dependency = sha1($dependency);
+            }
+
+            if (Iof::eloquentModel($dependency)) {
+                $dependency = sprintf(
+                    '[%s-%s]',
+                    get_class($dependency),
+                    $dependency->getAttribute($dependency->getRouteKeyName())
+                );
+            }
+
+            if (Iof::arrayable($dependency)) {
+                $dependency = Arr::hash($dependency->toArray());
+            }
+
+            if (Iof::jsonable($dependency)) {
+                $dependency = sha1($dependency->toJson());
+            }
+
+            if ($dependency instanceof \stdClass) {
+                $dependency = Arr::hash(get_object_vars($dependency));
+            }
+
+            if (is_object($dependency)) {
+                $dependency = Arr::hash(get_object_vars($dependency));
+            }
+
+            if (is_array($dependency)) {
+                $dependency = Arr::hash($dependency);
+            }
+
+            $key[] = $dependency;
+        }
+
+        return hash('sha256', implode('-',$key));
     }
 }
