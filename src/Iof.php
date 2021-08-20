@@ -2,6 +2,8 @@
 
 namespace Fnp\ElHelper;
 
+use Traversable;
+
 class Iof
 {
     private const COLLECTION_CLASSES = [
@@ -12,7 +14,7 @@ class Iof
     /**
      * Can instance be converted to array?
      *
-     * @param  mixed  $object  Object to be tested
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
@@ -28,7 +30,7 @@ class Iof
     /**
      * Can instance be converted to JSON?
      *
-     * @param  mixed  $object  Object to be tested
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
@@ -44,7 +46,7 @@ class Iof
     /**
      * Can instance be converted to string?
      *
-     * @param  mixed  $object  Object to be tested
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
@@ -60,7 +62,7 @@ class Iof
     /**
      * Is instance a collection?
      *
-     * @param  mixed  $object  Object to be tested
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
@@ -79,7 +81,7 @@ class Iof
     /**
      * Is instance traversable
      *
-     * @param  mixed  $object  Object or Array to be tested
+     * @param mixed $object Object or Array to be tested
      *
      * @return bool
      */
@@ -93,7 +95,7 @@ class Iof
             return false;
         }
 
-        if ($object instanceof \Traversable) {
+        if ($object instanceof Traversable) {
             return true;
         }
 
@@ -103,7 +105,7 @@ class Iof
     /**
      * Is instance an eloquent model?
      *
-     * @param  mixed  $object  Object to be tested
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
