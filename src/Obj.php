@@ -2,6 +2,8 @@
 
 namespace Fnp\ElHelper;
 
+use stdClass;
+
 class Obj
 {
     /**
@@ -40,19 +42,19 @@ class Obj
         }
 
         $elPrefix = $prefix;
-        $elName   = ucfirst(Str::camel($name));
+        $elName = ucfirst(Str::camel($name));
         $elSuffix = $suffix;
 
         if (empty($prefix)) {
             $elPrefix = NULL;
-            $elName   = Str::camel($name);
+            $elName = Str::camel($name);
         }
 
         if ($suffix) {
             $elSuffix = ucFirst($suffix);
         }
 
-        $method = $elPrefix.$elName.$elSuffix;
+        $method = $elPrefix . $elName . $elSuffix;
 
         return $method;
     }
@@ -83,7 +85,7 @@ class Obj
                 $dependency = sha1($dependency->toJson());
             }
 
-            if ($dependency instanceof \stdClass) {
+            if ($dependency instanceof stdClass) {
                 $dependency = Arr::hash(get_object_vars($dependency));
             }
 
@@ -98,6 +100,6 @@ class Obj
             $key[] = $dependency;
         }
 
-        return hash('sha256', implode('-',$key));
+        return hash('sha256', implode('-', $key));
     }
 }

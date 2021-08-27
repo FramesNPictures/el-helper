@@ -2,19 +2,27 @@
 
 namespace Fnp\ElHelper;
 
+use Traversable;
+
 class Iof
 {
+    private const COLLECTION_CLASSES = [
+        'Illuminate\Support\Collection',
+        'Illuminate\Database\Eloquent\Collection',
+    ];
+
     /**
      * Can instance be converted to array?
      *
-     * @param $object
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
-    public static function arrayable($object)
+    public static function arrayable($object): bool
     {
-        if (!is_object($object))
-            return FALSE;
+        if (!is_object($object)) {
+            return false;
+        }
 
         return method_exists($object, 'toArray');
     }
@@ -22,14 +30,15 @@ class Iof
     /**
      * Can instance be converted to JSON?
      *
-     * @param $object
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
-    public static function jsonable($object)
+    public static function jsonable($object): bool
     {
-        if (!is_object($object))
-            return FALSE;
+        if (!is_object($object)) {
+            return false;
+        }
 
         return method_exists($object, 'toJson');
     }
@@ -37,14 +46,15 @@ class Iof
     /**
      * Can instance be converted to string?
      *
-     * @param $object
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
-    public static function stringable($object)
+    public static function stringable($object): bool
     {
-        if (!is_object($object))
-            return FALSE;
+        if (!is_object($object)) {
+            return false;
+        }
 
         return method_exists($object, '__toString');
     }
@@ -52,28 +62,54 @@ class Iof
     /**
      * Is instance a collection?
      *
-     * @param $object
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
-    public static function collection($object)
+    public static function collection($object): bool
     {
-        if (!is_object($object))
-            return FALSE;
+        if (!is_object($object)) {
+            return false;
+        }
 
-        return method_exists($object, 'contains') &&
-               method_exists($object, 'push') &&
-               method_exists($object, 'tap');
+        return in_array(
+            get_class($object),
+            self::COLLECTION_CLASSES
+        );
+    }
+
+    /**
+     * Is instance traversable
+     *
+     * @param mixed $object Object or Array to be tested
+     *
+     * @return bool
+     */
+    public static function traversable($object): bool
+    {
+        if (is_array($object)) {
+            return true;
+        }
+
+        if (!is_object($object)) {
+            return false;
+        }
+
+        if ($object instanceof Traversable) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
      * Is instance an eloquent model?
      *
-     * @param $object
+     * @param mixed $object Object to be tested
      *
      * @return bool
      */
-    public static function eloquentModel($object)
+    public static function eloquentModel($object): bool
     {
         if (!is_object($object))
             return FALSE;
