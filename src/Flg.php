@@ -29,4 +29,30 @@ class Flg
     {
         return !self::has($flagSet, $flag);
     }
+
+    /**
+     * Explicitly clears bits from the flag
+     *
+     * @param  int  $flagSet
+     * @param  int  $flag
+     *
+     * @return int
+     */
+    public static function clear(int $flagSet, int $flag): int
+    {
+        return $flagSet & ~$flag;
+    }
+
+    /**
+     * Explicitly set bits in a flag
+     *
+     * @param  int  $flagSet
+     * @param  int  $flags
+     *
+     * @return int
+     */
+    public static function set(int $flagSet, int $flags): int
+    {
+        return $flagSet | $flags;
+    }
 }

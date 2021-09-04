@@ -44,4 +44,31 @@ class FlgHelperTest extends TestCase
         $this->assertEquals($result, \Fnp\ElHelper\Flg::has($flagset, $test));
         $this->assertEquals(!$result, \Fnp\ElHelper\Flg::not($flagset, $test));
     }
+
+    public function provideBitwiseOperationData()
+    {
+        return [
+            '7 & 0' => [0b111, 0b000, 0b111, 0b111],
+            '7 & 1' => [0b111, 0b001, 0b111, 0b110],
+            '7 & 3' => [0b111, 0b011, 0b111, 0b100],
+            '7 & 4' => [0b111, 0b100, 0b111, 0b011],
+            '7 & 5' => [0b111, 0b101, 0b111, 0b010],
+            '7 & 6' => [0b111, 0b111, 0b111, 0b000],
+            '0 & 0' => [0b000, 0b000, 0b000, 0b000],
+            '0 & 1' => [0b000, 0b001, 0b001, 0b000],
+            '0 & 3' => [0b000, 0b011, 0b011, 0b000],
+            '0 & 4' => [0b000, 0b100, 0b100, 0b000],
+            '0 & 5' => [0b000, 0b101, 0b101, 0b000],
+            '0 & 7' => [0b000, 0b111, 0b111, 0b000],
+        ];
+    }
+
+    /**
+     * @dataProvider provideBitwiseOperationData
+     */
+    public function testBitwiseOperationData(int $flagSet, int $flag, int $setResult, $clearResult)
+    {
+        $this->assertEquals($setResult, \Fnp\ElHelper\Flg::set($flagSet, $flag), 'Problem setting flag');
+        $this->assertEquals($clearResult, \Fnp\ElHelper\Flg::clear($flagSet, $flag), 'Problem clearing flag');
+    }
 }
