@@ -41,7 +41,7 @@ jobs:
           when: always
 
       - store_test_results:
-          path: ~/phpunit
+          path: ~/phpunit/junit.xml
 
       - store_artifacts:
           path: ~/phpunit
