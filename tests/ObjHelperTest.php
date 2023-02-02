@@ -149,12 +149,14 @@ class ObjHelperTest extends TestCase
 
         // Protected properties
         $props = Obj::properties($object, Obj::PROPERTIES_PROTECTED);
+        $props[0]->setAccessible(true);
         $this->assertEquals(1, count($props));
         $this->assertEquals('surname', $props[0]->name);
         $this->assertEquals('Doe', $props[0]->getValue($object));
 
         // Private properties
         $props = Obj::properties($object, Obj::PROPERTIES_PRIVATE);
+        $props[0]->setAccessible(true);
         $this->assertEquals(1, count($props));
         $this->assertEquals('email', $props[0]->name);
         $this->assertEquals('john.doe@gmail.com', $props[0]->getValue($object));
