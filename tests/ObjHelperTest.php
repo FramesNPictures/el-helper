@@ -128,27 +128,36 @@ class ObjHelperTest extends TestCase
         $this->assertEquals($methodName, Obj::methodName($prefix, $name, $suffix));
     }
 
-    public function testKeyObject(): void
+    public function testAccessingProperties()
     {
-        $o1 = new DummyObject;
-        $o2 = new DummyObject;
+        // Object
+        $object = new class {
+            public    $name    = 'John';
+            protected $surname = 'Doe';
+            private   $email   = 'john.doe@gmail.com';
+        };
 
-        $this->assertEquals(
-            Obj::key($o1),
-            Obj::key($o2)
-        );
+        // All properties
+        $props = Obj::properties($object, Obj::PROPERTIES_ALL);
+        $this->assertEquals(3, count($props));
 
-        $o2->b = 'This in not b';
+        // Public properties
+        $props = Obj::properties($object, Obj::PROPERTIES_PUBLIC);
+        $this->assertEquals(1, count($props));
+        $this->assertEquals('name', $props[0]->name);
+        $this->assertEquals('John', $props[0]->getValue($object));
 
-        $this->assertNotEquals(
-            Obj::key($o1),
-            Obj::key($o2)
-        );
+        // Protected properties
+        $props = Obj::properties($object, Obj::PROPERTIES_PROTECTED);
+        $this->assertEquals(1, count($props));
+        $this->assertEquals('surname', $props[0]->name);
+        $this->assertEquals('Doe', $props[0]->getValue($object));
+
+        // Private properties
+        $props = Obj::properties($object, Obj::PROPERTIES_PRIVATE);
+        $this->assertEquals(1, count($props));
+        $this->assertEquals('email', $props[0]->name);
+        $this->assertEquals('john.doe@gmail.com', $props[0]->getValue($object));
     }
-}
 
-class DummyObject
-{
-    public $a = 'This is A';
-    public $b = 'This is B';
 }
