@@ -2,38 +2,51 @@
 
 namespace Fnp\ElHelper;
 
+use Fnp\ElHelper\Exceptions\CouldNotAccessProperties;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionProperty;
 use stdClass;
 
 class Obj
 {
+    const PROPERTIES_ALL        = ReflectionProperty::IS_PUBLIC +
+                                  ReflectionProperty::IS_PROTECTED +
+                                  ReflectionProperty::IS_PRIVATE;
+    const PROPERTIES_PUBLIC     = ReflectionProperty::IS_PUBLIC;
+    const PROPERTIES_PROTECTED  = ReflectionProperty::IS_PROTECTED;
+    const PROPERTIES_PRIVATE    = ReflectionProperty::IS_PRIVATE;
+    const PROPERTIES_ACCESSIBLE = ReflectionProperty::IS_PUBLIC +
+                                  ReflectionProperty::IS_PROTECTED;
+
     /**
      * Checks if method exists in the current model.
      * Returns method name if it does or NULL otherwise.
      *
-     * @param        $object
-     * @param string $prefix
-     * @param string $name
-     * @param string $suffix
+     * @param          $object
+     * @param  string  $prefix
+     * @param  string  $name
+     * @param  string  $suffix
      *
      * @return null|string
      */
-    public static function methodExists($object, $prefix, $name, $suffix = NULL)
+    public static function methodExists($object, $prefix, $name, $suffix = null)
     {
         $method = static::methodName($prefix, $name, $suffix);
 
-        return method_exists($object, $method) ? $method : NULL;
+        return method_exists($object, $method) ? $method : null;
     }
 
     /**
      * Builds a method name based on prefix, name and suffix
      *
-     * @param string $prefix
-     * @param string $name
-     * @param string $suffix
+     * @param  string  $prefix
+     * @param  string  $name
+     * @param  string  $suffix
      *
      * @return string
      */
-    public static function methodName($prefix, $name, $suffix = NULL)
+    public static function methodName($prefix, $name, $suffix = null)
     {
         $name = str_replace([' ', '-', '.'], '_', $name);
 
@@ -42,12 +55,12 @@ class Obj
         }
 
         $elPrefix = $prefix;
-        $elName = ucfirst(Str::camel($name));
+        $elName   = ucfirst(Str::camel($name));
         $elSuffix = $suffix;
 
         if (empty($prefix)) {
-            $elPrefix = NULL;
-            $elName = Str::camel($name);
+            $elPrefix = null;
+            $elName   = Str::camel($name);
         }
 
         if ($suffix) {
@@ -101,5 +114,24 @@ class Obj
         }
 
         return hash('sha256', implode('-', $key));
+    }
+
+    /**
+     * Retrieves properties of the object
+     *
+     * @param  mixed  $model  Model object
+     * @param  int    $flags  Additional flags
+     *
+     * @return ReflectionProperty[]|array
+     */
+    public static function properties(mixed $model, int $flags = self::PROPERTIES_ALL): array
+    {
+        try {
+            $reflection = new ReflectionClass($model);
+        } catch (ReflectionException $e) {
+            throw CouldNotAccessProperties::make($model);
+        }
+
+        return $reflection->getProperties($flags);
     }
 }

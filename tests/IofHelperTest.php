@@ -91,6 +91,31 @@ class IofHelperTest extends TestCase
         $i = new StringableTestDummy0();
         $this->assertTrue(Iof::stringable($i));
     }
+
+    /**
+     * @test
+     */
+    public function it_should_not_be_serializable(): void
+    {
+        $i = new class() {};
+
+        $this->assertFalse(Iof::serializable($i));
+    }
+
+    /**
+     * @test
+     */
+    public function it_should_be_serializable(): void
+    {
+        $i = new class() {
+            public function __serialize(): array
+            {
+                return ['a' => 'a', 'b' => 'b'];
+            }
+        };
+
+        $this->assertTrue(Iof::serializable($i));
+    }
 }
 
 class ArrayableTestDummy0

@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:8-node-browsers
+      - image: cimg/php:8.2.1-node
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -36,8 +36,8 @@ jobs:
           command: |
             mkdir -p ~/phpunit
             mkdir -p ~/coverage
-            vendor/bin/phpunit --log-junit ~/phpunit/junit.xml
-            phpdbg -qrr vendor/bin/phpunit --coverage-html ~/coverage
+            vendor/bin/phpunit --testdox --log-junit ~/phpunit/junit.xml
+            phpdbg -qrr vendor/bin/phpunit --testdox --coverage-html ~/coverage
           when: always
 
       - store_test_results:
