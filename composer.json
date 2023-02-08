@@ -1,6 +1,7 @@
 {
     "name": "framesnpictures/el-helper",
-    "description": "Re-usable Helper Objects",
+    "description": "Re-usable Helper Libraries",
+    "version": "1.1",
     "type": "library",
     "require": {
         "php": "^8.2"
