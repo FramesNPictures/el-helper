@@ -1,6 +1,6 @@
 # ElHelper
 
-[![CircleCI](https://circleci.com/gh/FramesNPictures/el-helper/tree/develop.svg?style=svg)](https://circleci.com/gh/FramesNPictures/el-helper/tree/develop)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/FramesNPictures/el-helper/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/FramesNPictures/el-helper/tree/main)
 
 Number of helpers to be used in other modules.
 
