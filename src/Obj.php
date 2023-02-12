@@ -1,8 +1,8 @@
 <?php
 
-namespace Fnp\ElHelper;
+namespace Fnp\Helper;
 
-use Fnp\ElHelper\Exceptions\CouldNotAccessProperties;
+use Fnp\Helper\Exceptions\CouldNotAccessProperties;
 use ReflectionClass;
 use ReflectionException;
 use ReflectionProperty;

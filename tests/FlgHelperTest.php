@@ -41,8 +41,8 @@ class FlgHelperTest extends TestCase
      */
     public function testFlag(int $flagset, int $test, bool $result)
     {
-        $this->assertEquals($result, \Fnp\ElHelper\Flg::has($flagset, $test));
-        $this->assertEquals(!$result, \Fnp\ElHelper\Flg::not($flagset, $test));
+        $this->assertEquals($result, \Fnp\Helper\Flg::has($flagset, $test));
+        $this->assertEquals(!$result, \Fnp\Helper\Flg::not($flagset, $test));
     }
 
     public function provideBitwiseOperationData()
@@ -68,7 +68,7 @@ class FlgHelperTest extends TestCase
      */
     public function testBitwiseOperationData(int $flagSet, int $flag, int $setResult, $clearResult)
     {
-        $this->assertEquals($setResult, \Fnp\ElHelper\Flg::set($flagSet, $flag), 'Problem setting flag');
-        $this->assertEquals($clearResult, \Fnp\ElHelper\Flg::clear($flagSet, $flag), 'Problem clearing flag');
+        $this->assertEquals($setResult, \Fnp\Helper\Flg::set($flagSet, $flag), 'Problem setting flag');
+        $this->assertEquals($clearResult, \Fnp\Helper\Flg::clear($flagSet, $flag), 'Problem clearing flag');
     }
 }
