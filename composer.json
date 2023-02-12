@@ -1,7 +1,6 @@
 {
     "name": "fnp/el-helper",
     "description": "Re-usable Helper Libraries",
-    "version": "1.0",
     "type": "library",
     "require": {
         "php": "^8.2"
