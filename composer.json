@@ -1,5 +1,5 @@
 {
-    "name": "fnp/el-helper",
+    "name": "framesnpictures/el-helper",
     "description": "Re-usable Helper Libraries",
     "type": "library",
     "require": {
