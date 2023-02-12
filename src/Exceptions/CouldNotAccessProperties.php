@@ -1,6 +1,6 @@
 <?php
 
-namespace Fnp\ElHelper\Exceptions;
+namespace Fnp\Helper\Exceptions;
 
 class CouldNotAccessProperties extends HelperException
 {

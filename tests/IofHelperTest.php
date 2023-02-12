@@ -1,6 +1,6 @@
 <?php
 
-use Fnp\ElHelper\Iof;
+use Fnp\Helper\Iof;
 use PHPUnit\Framework\TestCase;
 
 class IofHelperTest extends TestCase
