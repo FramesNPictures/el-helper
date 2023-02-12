@@ -1,5 +1,5 @@
 {
-    "name": "framesnpictures/el-helper",
+    "name": "fnp/el-helper",
     "description": "Re-usable Helper Libraries",
     "version": "1.0",
     "type": "library",
@@ -16,7 +16,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Fnp\\ElHelper\\": "src/"
+            "Fnp\\Helper\\": "src/"
         }
     },
     "authors": [

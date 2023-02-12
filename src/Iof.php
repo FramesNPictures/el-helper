@@ -1,6 +1,6 @@
 <?php
 
-namespace Fnp\ElHelper;
+namespace Fnp\Helper;
 
 use Traversable;
 

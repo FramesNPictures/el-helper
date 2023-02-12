@@ -1,6 +1,6 @@
 <?php
 
-use Fnp\ElHelper\Str;
+use Fnp\Helper\Str;
 use PHPUnit\Framework\TestCase;
 
 class StrHelperTest extends TestCase
