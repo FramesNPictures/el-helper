@@ -1,6 +1,6 @@
 <?php
 
-namespace Fnp\Helper\Exceptions;
+namespace Fnp\ElHelper\Exceptions;
 
 use RuntimeException;
 

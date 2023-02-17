@@ -1,6 +1,6 @@
 <?php
 
-use Fnp\Helper\Obj;
+use Fnp\ElHelper\Obj;
 use PHPUnit\Framework\TestCase;
 
 class ObjHelperTest extends TestCase

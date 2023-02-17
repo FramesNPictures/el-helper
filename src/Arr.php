@@ -1,6 +1,6 @@
 <?php
 
-namespace Fnp\Helper;
+namespace Fnp\ElHelper;
 
 use Illuminate\Support\Arr as IlluminateArr;
 
